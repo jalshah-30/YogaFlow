@@ -1,0 +1,22 @@
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+.venv*/
+venv/
+yoga_analyzer/venv/
+
+# Dataset
+/yoga_analyzer/YogaDataset/
+
+# Jupyter notebooks to exclude
+/yoga_analyzer/NB2.ipynb
+/yoga_analyzer/NB3.ipynb
+
+# Local database
+/yoga.db
+
+yoga_analyzer/yoga_landmarks.csv
+yoga_analyzer/yoga_pose_angles.csv

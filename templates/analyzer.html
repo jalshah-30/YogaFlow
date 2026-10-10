@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>YogaFlow - AI Yoga Analyzer</title>
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Analyzer page styles (load after style.css) -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/analyzer.css') }}">
+</head>
+
+<body>
+
+    <main>
+        <section class="analyzer-section">
+            <div class="container">
+
+                <header class="section-header">
+                    <h1>AI Yoga Analyzer</h1>
+                    <p>
+                        Check your posture with a live camera or a single photo.
+                    </p>
+                </header>
+
+                <div class="analyzer-container">
+
+                    <!-- LIVE CAMERA ANALYSIS -->
+                    <div class="camera-card">
+
+                        <div class="card-heading">
+                            <h2>Live camera</h2>
+                            <span id="cameraStatus" class="status-badge">
+                                Camera Off
+                            </span>
+                        </div>
+
+                        <div class="camera-preview">
+
+                            <video id="camera"
+                                   autoplay
+                                   playsinline
+                                   muted>
+                            </video>
+
+                            <canvas id="canvas" hidden></canvas>
+
+                            <div id="cameraPlaceholder"
+                                 class="camera-placeholder">
+                                <span class="camera-icon">📷</span>
+                                <p>Your camera preview will appear here</p>
+                                <small>Allow camera access when prompted</small>
+                            </div>
+
+                        </div>
+
+                        <div class="camera-buttons">
+
+                            <button type="button"
+                                    id="startCameraBtn"
+                                    class="btn btn-primary">
+                                Start Camera
+                            </button>
+
+                            <button type="button"
+                                    id="liveAnalysisBtn"
+                                    class="btn btn-secondary"
+                                    disabled>
+                                Start Live Analysis
+                            </button>
+
+                            <button type="button"
+                                    id="captureBtn"
+                                    class="btn btn-secondary"
+                                    disabled>
+                                Capture Frame
+                            </button>
+
+                            <button type="button"
+                                    id="stopCameraBtn"
+                                    class="btn btn-danger"
+                                    disabled>
+                                Stop Camera
+                            </button>
+
+                        </div>
+
+                        <p id="liveMessage"
+                           class="feedback-message"
+                           aria-live="polite">
+                            Camera is not running.
+                        </p>
+
+                    </div>
+
+                    <!-- PHOTO UPLOAD ANALYSIS -->
+                    <div class="upload-card">
+
+                        <div class="card-heading">
+                            <h2>Upload a photo</h2>
+                        </div>
+
+                        <p class="helper-text">
+                            Use a clear image with your full body in frame.
+                        </p>
+
+                        <input type="file"
+                               id="imageInput"
+                               accept="image/png,image/jpeg">
+
+                        <label for="imageInput" class="upload-dropzone">
+                            <span class="upload-icon">↑</span>
+                            <strong>Choose an image</strong>
+                            <span class="upload-hint">JPG or PNG</span>
+                        </label>
+
+                        <div id="uploadPreviewContainer"
+                             class="upload-preview-container"
+                             hidden>
+
+                            <img id="uploadPreview"
+                                 alt="Selected yoga pose preview">
+
+                            <button type="button"
+                                    id="removeImageBtn"
+                                    class="btn btn-secondary">
+                                Remove Photo
+                            </button>
+
+                        </div>
+
+                        <button type="button"
+                                id="uploadBtn"
+                                class="btn btn-primary full-width"
+                                disabled>
+                            Analyze Photo
+                        </button>
+
+                        <p id="uploadMessage"
+                           class="feedback-message"
+                           aria-live="polite">
+                            Select a photo to begin.
+                        </p>
+
+                    </div>
+
+                    <!-- ANALYSIS RESULTS -->
+                    <div id="resultSection"
+                         class="result-card"
+                         hidden>
+
+                        <div class="result-heading">
+                            <div>
+                                <h2>Analysis results</h2>
+                                <p id="resultSource">Analysis summary</p>
+                            </div>
+
+                            <span id="statusResult" class="status-badge">
+                                -
+                            </span>
+                        </div>
+
+                        <div class="result-body">
+
+                            <img id="resultImage"
+                                 class="result-image"
+                                 alt="Analyzed yoga pose"
+                                 hidden>
+
+                            <div class="result-main">
+
+                                <div class="result-grid">
+
+                                    <div class="result-item">
+                                        <span>Detected pose</span>
+                                        <strong id="poseResult">-</strong>
+                                    </div>
+
+                                    <div class="result-item">
+                                        <span>Confidence</span>
+                                        <strong id="confidenceResult">-</strong>
+                                    </div>
+
+                                    <div class="result-item">
+                                        <span>Posture score</span>
+                                        <strong id="scoreResult">-</strong>
+                                    </div>
+
+                                    <div class="result-item">
+                                        <span>Posture status</span>
+                                        <strong id="postureStatusResult">-</strong>
+                                    </div>
+
+                                </div>
+
+                                <div class="correction-box">
+                                    <h3>💡 Posture correction</h3>
+                                    <p id="correctionResult">
+                                        Your correction suggestions will appear here.
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Analyzer JavaScript -->
+    <script src="{{ url_for('static', filename='js/analyzer.js') }}"
+            defer></script>
+
+</body>
+</html>

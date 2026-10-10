@@ -1,0 +1,16 @@
+{
+    "total_images": 2756,
+    "successful_pose_detections": 2578,
+    "number_of_pose_classes": 47,
+    "angle_features": [
+        "left_elbow",
+        "right_elbow",
+        "left_knee",
+        "right_knee",
+        "left_hip",
+        "right_hip",
+        "left_shoulder",
+        "right_shoulder"
+    ],
+    "reference_profiles": 47
+}

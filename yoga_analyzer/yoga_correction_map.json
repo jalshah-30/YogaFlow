@@ -1,0 +1,18 @@
+{
+    "left_knee|too_low": "Straighten your left knee slightly.",
+    "right_knee|too_low": "Straighten your right knee slightly.",
+    "left_knee|too_high": "Bend your left knee slightly.",
+    "right_knee|too_high": "Bend your right knee slightly.",
+    "left_elbow|too_low": "Straighten your left elbow slightly.",
+    "right_elbow|too_low": "Straighten your right elbow slightly.",
+    "left_elbow|too_high": "Bend your left elbow slightly.",
+    "right_elbow|too_high": "Bend your right elbow slightly.",
+    "left_hip|too_low": "Adjust your left hip position slightly.",
+    "right_hip|too_low": "Adjust your right hip position slightly.",
+    "left_hip|too_high": "Adjust your left hip position slightly.",
+    "right_hip|too_high": "Adjust your right hip position slightly.",
+    "left_shoulder|too_low": "Adjust your left shoulder position slightly.",
+    "right_shoulder|too_low": "Adjust your right shoulder position slightly.",
+    "left_shoulder|too_high": "Lower your left shoulder slightly.",
+    "right_shoulder|too_high": "Lower your right shoulder slightly."
+}

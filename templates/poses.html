@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Yoga Poses | YogaFlow
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+
+    <div class="container nav-container">
+
+        <a href="/" class="logo">
+
+            <span class="logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4c-2.4 3-2.4 8 0 12 2.4-4 2.4-9 0-12z"/><path d="M12 16c-3.5-.2-6.8-2.6-8-6.5 3.2-.3 6 1.3 8 6.5z"/><path d="M12 16c3.5-.2 6.8-2.6 8-6.5-3.2-.3-6 1.3-8 6.5z"/><path d="M6 19.5c2 1.1 4 1.5 6 1.5s4-.4 6-1.5"/></svg></span>
+
+            Yoga<span class="logo-highlight">
+                Flow
+            </span>
+
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a
+                href="/poses"
+                class="active"
+            >
+                Poses
+            </a>
+
+            <a href="/analyzer">
+                Yoga Analyzer
+            </a>
+
+            <a href="/dashboard">
+                Dashboard
+            </a>
+
+        </nav>
+
+
+        <button
+            class="mobile-menu-btn"
+            id="mobileMenuBtn"
+        ><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
+
+    </div>
+
+</header>
+
+
+<main>
+
+<section class="poses-section">
+
+    <div class="container">
+
+
+        <div class="page-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    DATABASE CRUD
+                </span>
+
+                <h1>
+                    Yoga Pose Library
+                </h1>
+
+                <p>
+                    Create, view, update and delete
+                    yoga poses.
+                </p>
+
+            </div>
+
+
+            <button
+                class="btn btn-primary"
+                id="openAddPoseBtn"
+            >
+                + Add Pose
+            </button>
+
+        </div>
+
+
+        <div class="pose-controls">
+
+            <div class="search-box">
+
+                <span style="display:flex;color:#6b7480"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.2-4.2"/></svg></span>
+
+                <input
+                    type="text"
+                    id="poseSearch"
+                    placeholder="Search yoga poses..."
+                >
+
+            </div>
+
+
+            <select
+                id="difficultyFilter"
+            >
+
+                <option value="all">
+                    All Levels
+                </option>
+
+                <option value="Beginner">
+                    Beginner
+                </option>
+
+                <option value="Intermediate">
+                    Intermediate
+                </option>
+
+                <option value="Advanced">
+                    Advanced
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div
+            class="pose-grid"
+            id="poseGrid"
+        >
+
+            <div class="loading">
+                Loading poses...
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- ================= MODAL ================= -->
+
+<div
+    class="modal-overlay"
+    id="poseModal"
+>
+
+    <div class="modal">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2 id="modalTitle">
+                    Add Yoga Pose
+                </h2>
+
+                <p>
+                    All fields must be completed.
+                </p>
+
+            </div>
+
+
+            <button
+                class="modal-close"
+                id="closePoseModal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="poseForm" novalidate>
+
+
+            <input
+                type="hidden"
+                id="poseId"
+            >
+
+
+            <div class="form-group">
+
+                <label>
+                    Pose Name *
+                </label>
+
+                <input
+                    type="text"
+                    id="poseName"
+                    placeholder="e.g. Tadasana"
+                >
+
+                <small
+                    class="validation-error"
+                    id="poseNameError"
+                ></small>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    English Name *
+                </label>
+
+                <input
+                    type="text"
+                    id="poseEnglishName"
+                    placeholder="e.g. Mountain Pose"
+                >
+
+                <small
+                    class="validation-error"
+                    id="poseEnglishNameError"
+                ></small>
+
+            </div>
+
+
+            <div class="form-row">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Difficulty *
+                    </label>
+
+                    <select
+                        id="poseDifficulty"
+                    >
+
+                        <option value="">
+                            Select difficulty
+                        </option>
+
+                        <option value="Beginner">
+                            Beginner
+                        </option>
+
+                        <option value="Intermediate">
+                            Intermediate
+                        </option>
+
+                        <option value="Advanced">
+                            Advanced
+                        </option>
+
+                    </select>
+
+                    <small
+                        class="validation-error"
+                        id="poseDifficultyError"
+                    ></small>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Duration *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="poseDuration"
+                        placeholder="e.g. 30 seconds"
+                    >
+
+                    <small
+                        class="validation-error"
+                        id="poseDurationError"
+                    ></small>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Benefits *
+                </label>
+
+                <textarea
+                    id="poseBenefits"
+                    rows="3"
+                    placeholder="Enter benefits..."
+                ></textarea>
+
+                <small
+                    class="validation-error"
+                    id="poseBenefitsError"
+                ></small>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Description *
+                </label>
+
+                <textarea
+                    id="poseDescription"
+                    rows="4"
+                    placeholder="Describe the pose..."
+                ></textarea>
+
+                <small
+                    class="validation-error"
+                    id="poseDescriptionError"
+                ></small>
+
+            </div>
+
+
+            <div
+                class="form-actions"
+            >
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    id="cancelPoseBtn"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Save Pose
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script
+    src="{{ url_for('static', filename='js/app.js') }}"
+></script>
+
+<script
+    src="{{ url_for('static', filename='js/poses.js') }}"
+></script>
+
+</body>
+
+</html>

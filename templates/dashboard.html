@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Dashboard | YogaFlow
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+
+    <div class="container nav-container">
+
+        <a href="/" class="logo">
+
+            <span class="logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4c-2.4 3-2.4 8 0 12 2.4-4 2.4-9 0-12z"/><path d="M12 16c-3.5-.2-6.8-2.6-8-6.5 3.2-.3 6 1.3 8 6.5z"/><path d="M12 16c3.5-.2 6.8-2.6 8-6.5-3.2-.3-6 1.3-8 6.5z"/><path d="M6 19.5c2 1.1 4 1.5 6 1.5s4-.4 6-1.5"/></svg></span>
+
+            Yoga<span class="logo-highlight">
+                Flow
+            </span>
+
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/poses">
+                Poses
+            </a>
+
+            <a href="/analyzer">
+                Yoga Analyzer
+            </a>
+
+            <a
+                href="/dashboard"
+                class="active"
+            >
+                Dashboard
+            </a>
+
+        </nav>
+
+
+        <button
+            class="mobile-menu-btn"
+            id="mobileMenuBtn"
+        ><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
+
+    </div>
+
+</header>
+
+
+<main>
+
+<section class="dashboard-section">
+
+    <div class="container">
+
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    DATABASE DASHBOARD
+                </span>
+
+                <h1>
+                    YogaFlow Dashboard
+                </h1>
+
+                <p>
+                    Overview of your yoga platform.
+                </p>
+
+            </div>
+
+
+            <a
+                href="/analyzer"
+                class="btn btn-primary"
+            >
+                Analyze Pose →
+            </a>
+
+        </div>
+
+
+        <div class="dashboard-stats">
+
+
+            <div class="dashboard-stat-card">
+
+                <div class="dashboard-stat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 8.2v8"/><path d="M12 10.2l-4 3.3-1 2"/><path d="M12 10.2l4 3.3 1 2"/><path d="M4.5 18.5c2.5 1.6 5 .5 7.5-1.5 2.5 2 5 3.1 7.5 1.5"/></svg></div>
+
+                <div>
+
+                    <span>
+                        Yoga Poses
+                    </span>
+
+                    <strong id="poseCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-stat-card">
+
+                <div class="dashboard-stat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V6a2 2 0 012-2h2"/><path d="M16 4h2a2 2 0 012 2v2"/><path d="M20 16v2a2 2 0 01-2 2h-2"/><path d="M8 20H6a2 2 0 01-2-2v-2"/><circle cx="12" cy="9" r="1.6"/><path d="M12 11v4"/><path d="M9 12.5l3-.8 3 .8"/><path d="M10 17.5l2-2.5 2 2.5"/></svg></div>
+
+                <div>
+
+                    <span>
+                        Analyses
+                    </span>
+
+                    <strong id="analysisCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-stat-card">
+
+                <div class="dashboard-stat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="18" rx="7" ry="2.6"/><ellipse cx="12" cy="12.6" rx="5" ry="2.2"/><ellipse cx="12" cy="8" rx="3" ry="1.8"/></svg></div>
+
+                <div>
+
+                    <span>
+                        Average Score
+                    </span>
+
+                    <strong id="averageScore">
+                        0%
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-stat-card">
+
+                <div class="dashboard-stat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg></div>
+
+                <div>
+
+                    <span>
+                        Database
+                    </span>
+
+                    <strong>
+                        SQLite
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-grid">
+
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h2>
+                            Recent Analysis
+                        </h2>
+
+                        <p>
+                            Latest AI analysis results.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="analysis-list"
+                    id="analysisList"
+                >
+
+                    <p>
+                        No analysis results yet.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h2>
+                            Quick Actions
+                        </h2>
+
+                        <p>
+                            Manage your platform.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="quick-actions">
+
+
+                    <a
+                        href="/poses"
+                        class="quick-action"
+                    >
+
+                        <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>
+
+                        <div>
+
+                            <strong>
+                                Add Yoga Pose
+                            </strong>
+
+                            <small>
+                                Create database record
+                            </small>
+
+                        </div>
+
+                        <b>
+                            →
+                        </b>
+
+                    </a>
+
+
+                    <a
+                        href="/poses"
+                        class="quick-action"
+                    >
+
+                        <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1-4L16 5l3 3L8 19l-4 1z"/><path d="M14 7l3 3"/></svg></span>
+
+                        <div>
+
+                            <strong>
+                                Manage Poses
+                            </strong>
+
+                            <small>
+                                Edit or delete poses
+                            </small>
+
+                        </div>
+
+                        <b>
+                            →
+                        </b>
+
+                    </a>
+
+
+                    <a
+                        href="/analyzer"
+                        class="quick-action"
+                    >
+
+                        <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V6a2 2 0 012-2h2"/><path d="M16 4h2a2 2 0 012 2v2"/><path d="M20 16v2a2 2 0 01-2 2h-2"/><path d="M8 20H6a2 2 0 01-2-2v-2"/><circle cx="12" cy="9" r="1.6"/><path d="M12 11v4"/><path d="M9 12.5l3-.8 3 .8"/><path d="M10 17.5l2-2.5 2 2.5"/></svg></span>
+
+                        <div>
+
+                            <strong>
+                                Analyze Pose
+                            </strong>
+
+                            <small>
+                                Use AI analyzer
+                            </small>
+
+                        </div>
+
+                        <b>
+                            →
+                        </b>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="container footer-bottom">
+
+        <span>
+            © 2026 YogaFlow
+        </span>
+
+        <span>
+            Flask + SQLite + JavaScript
+        </span>
+
+    </div>
+
+</footer>
+
+
+<script
+    src="{{ url_for('static', filename='js/app.js') }}"
+></script>
+
+<script
+    src="{{ url_for('static', filename='js/dashboard.js') }}"
+></script>
+
+</body>
+
+</html>
